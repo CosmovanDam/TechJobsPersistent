@@ -28,8 +28,10 @@ namespace TechJobsPersistent.Controllers
             return View(employers);
         }
 
-        public IActionResult Add(AddEmployerViewModel addEmployerViewModel)
+        public IActionResult Add()
         {
+            // To keep from accepting empty EmployerViewModel
+            AddEmployerViewModel addEmployerViewModel = new AddEmployerViewModel();
             return View(addEmployerViewModel);
         }
 
@@ -46,10 +48,10 @@ namespace TechJobsPersistent.Controllers
                 context.Employers.Add(newEmployer);
                 context.SaveChanges();
 
-                return Redirect("/Employers");
+                return Redirect("/Employer");
             }
 
-            return View(addEmployerViewModel);
+            return View("Add", addEmployerViewModel);
         }
 
         public IActionResult About(int id)
